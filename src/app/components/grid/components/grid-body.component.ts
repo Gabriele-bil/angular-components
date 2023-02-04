@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ContentChild,
+  EventEmitter,
+  Input,
+  Output,
+  TemplateRef
+} from '@angular/core';
 import { FormControl, FormGroup } from "@angular/forms";
 import { DataSource, DataSourceElement, SortDirection } from "../models/types";
 
@@ -19,6 +27,7 @@ import { DataSource, DataSourceElement, SortDirection } from "../models/types";
             <i class="bi" [class]="orderInput.value === 'asc' ? 'bi-arrow-up-short' : 'bi-arrow-down-short'"></i>
           </ng-container>
         </h5>
+        <div class="col" *ngIf="itemTemplate"></div>
       </div>
 
       <div class="body">
@@ -29,6 +38,9 @@ import { DataSource, DataSourceElement, SortDirection } from "../models/types";
         >
           <p class="col-1 text-center mb-0" *ngIf="showIndex">{{ i + 1 }}</p>
           <p class="col-3 col-md text-center mb-0" *ngFor="let key of keys">{{ el[key] }}</p>
+          <div class="col" *ngIf="itemTemplate">
+            <ng-container *ngTemplateOutlet="itemTemplate"></ng-container>
+          </div>
         </div>
       </div>
 
@@ -73,6 +85,7 @@ import { DataSource, DataSourceElement, SortDirection } from "../models/types";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GridBodyComponent {
+  @ContentChild('itemTemplate') public itemTemplate!: TemplateRef<any>;
   @Input() showIndex = false;
   @Input() enableSort = false;
   @Input() keys: string[] = [];

@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ContentChild,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  TemplateRef
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { DataSource, DataSourceElement } from "./models/types";
 
@@ -16,7 +25,13 @@ import { DataSource, DataSourceElement } from "./models/types";
           [dataSource]="dataSource"
           [searchTerm]="searchInput.value"
           (clickRow)="clickRow.emit($event)"
-        />
+        >
+          <ng-container *ngIf="template">
+            <ng-template #itemTemplate let-item>
+              <ng-container *ngTemplateOutlet="template"></ng-container>
+            </ng-template>
+          </ng-container>
+        </gb-grid-body>
       </ng-container>
 
       <ng-template #noElements>
@@ -34,6 +49,7 @@ import { DataSource, DataSourceElement } from "./models/types";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GridComponent implements OnInit {
+  @ContentChild('itemTemplate') public template!: TemplateRef<any>;
   @Input() title = '';
   @Input() dataSource: DataSource = [];
   @Input() showIndex = false;

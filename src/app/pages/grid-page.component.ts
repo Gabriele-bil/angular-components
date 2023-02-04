@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {UsersService} from "../shared/services/users.service";
-import {DataSourceElement} from "../components/grid/models/types";
+import { UsersService } from "../shared/services/users.service";
+import { DataSourceElement } from "../components/grid/models/types";
 
 @Component({
   selector: 'gb-grid-page',
@@ -14,7 +14,11 @@ import {DataSourceElement} from "../components/grid/models/types";
       [enableSearch]="true"
       [enableSort]="true"
       (clickRow)="clickedRow($event)"
-    />
+    >
+      <ng-template #itemTemplate let-item>
+        <p>Actions</p>
+      </ng-template>
+    </gb-grid>
   `,
 })
 export class GridPageComponent {
