@@ -54,7 +54,7 @@ import { DataSource, DataSourceElement, SortDirection } from "../models/types";
 
       .body {
         height: 70vh;
-        overflow: scroll;
+        overflow: auto;
 
         .element {
           border-bottom: 1px solid #e3e3e3;
