@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
-import { Element } from './components/grid/grid.component';
+import { UsersService } from "./services/users.service";
+import { DataSourceElement } from "./components/grid/models/types";
 
 @Component({
   selector: 'gb-root',
   template: `
     <div id="container">
-      <div class="container pt-5">
+      <div class="container pt-5" *ngIf="users$ | async as users">
         <h2>Grid</h2>
         <gb-grid
           [title]="'Utenti'"
-          [dataSource]="test"
-          [showIndex]="true"
+          [dataSource]="users"
+          [showIndex]="false"
           [enableSearch]="true"
           [enableSort]="true"
           (clickRow)="clickedRow($event)"
@@ -27,26 +28,11 @@ import { Element } from './components/grid/grid.component';
   `]
 })
 export class AppComponent {
-  public test = [
-    {
-      "id": 1,
-      "firstName": "Terry",
-      "lastName": "Medhurst",
-      "age": 50,
-      "gender": "male",
-      "email": "atuny0@sohu.com",
-    },
-    {
-      "id": 2,
-      "firstName": "Gabriele",
-      "lastName": "Elis",
-      "age": 10,
-      "gender": "female",
-      "email": "atuny0@sohu.com",
-    },
-  ]
+  public users$ = this.usersService.getUsers();
 
-  public clickedRow(event: {el: Element, index: number }): void {
+  constructor(private usersService: UsersService) {}
+
+  public clickedRow(event: { el: DataSourceElement, index: number }): void {
     console.log('Clicked', event.el);
     console.log('Index: ', event.index);
   }

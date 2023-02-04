@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { DataSource } from '../grid.component';
+import { DataSource } from "../models/types";
 
 @Pipe({
   name: 'search'

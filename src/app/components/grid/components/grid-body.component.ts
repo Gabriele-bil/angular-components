@@ -1,6 +1,6 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
-import {DataSource, Element} from "../grid.component";
-import {FormControl, FormGroup} from "@angular/forms";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormControl, FormGroup } from "@angular/forms";
+import { DataSource, DataSourceElement, SortDirection } from "../models/types";
 
 @Component({
   selector: 'gb-grid-body',
@@ -78,10 +78,10 @@ export class GridBodyComponent {
   @Input() keys: string[] = [];
   @Input() dataSource: DataSource = []
   @Input() searchTerm = '';
-  @Output() clickRow = new EventEmitter< { el: Element, index: number }>();
+  @Output() clickRow = new EventEmitter< { el: DataSourceElement, index: number }>();
 
   public sortingInput = new FormGroup({
-    order: new FormControl<'asc' | 'desc'>('asc', { nonNullable: true }),
+    order: new FormControl<SortDirection>('asc', { nonNullable: true }),
     key: new FormControl('', { nonNullable: true })
   });
 
@@ -92,11 +92,11 @@ export class GridBodyComponent {
       : this.orderInput.patchValue('asc');
   }
 
-  public get orderInput(): FormControl<'asc' | 'desc'> {
+  public get orderInput(): FormControl<SortDirection> {
     return this.sortingInput.get('order') as FormControl;
   }
 
-  public get keyInput(): FormControl {
+  public get keyInput(): FormControl<string> {
     return this.sortingInput.get('key') as FormControl;
   }
 

@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { DataSource } from '../grid.component';
+import { DataSource, Sorting } from "../models/types";
 
 @Pipe({
   name: 'sort'
 })
 export class SortPipe implements PipeTransform {
 
-  transform(value: DataSource, sorting: { key: string, order: 'asc' | 'desc' }): DataSource {
+  transform(value: DataSource, sorting: Sorting): DataSource {
     console.log(sorting)
     if (!sorting || !sorting.order || !sorting.key) return value;
 

@@ -1,6 +1,6 @@
-import {ChangeDetectionStrategy, Component, Input, OnDestroy} from '@angular/core';
-import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from "@angular/forms";
-import {Subject, takeUntil} from "rxjs";
+import { ChangeDetectionStrategy, Component, Input, OnDestroy } from '@angular/core';
+import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from "@angular/forms";
+import { Subject, takeUntil } from "rxjs";
 
 @Component({
   selector: 'gb-grid-header',

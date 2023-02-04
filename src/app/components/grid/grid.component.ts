@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-
-export type Element = { [key: string]: any }
-export type DataSource = Element[]
+import { DataSource, DataSourceElement } from "./models/types";
 
 @Component({
   selector: 'gb-grid',
@@ -42,7 +40,7 @@ export class GridComponent implements OnInit {
   @Input() enableSearch = false;
   @Input() enableSort = false;
 
-  @Output() clickRow = new EventEmitter< { el: Element, index: number }>();
+  @Output() clickRow = new EventEmitter< { el: DataSourceElement, index: number }>();
 
   public keys: string[] = [];
   public searchInput = new FormControl('', { nonNullable: true });
@@ -53,7 +51,7 @@ export class GridComponent implements OnInit {
 
   private initKeys(source: DataSource): string[] {
     const element = source.find(el => el);
-    if (element) return Object.keys(element);
+    if (element) return Object.keys(element).filter(key => typeof element[key] !== 'object');
     return [];
   }
 }
