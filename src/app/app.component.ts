@@ -1,21 +1,14 @@
 import { Component } from '@angular/core';
-import { UsersService } from "./services/users.service";
-import { DataSourceElement } from "./components/grid/models/types";
 
 @Component({
   selector: 'gb-root',
   template: `
     <div id="container">
-      <div class="container pt-5" *ngIf="users$ | async as users">
-        <h2>Grid</h2>
-        <gb-grid
-          [title]="'Utenti'"
-          [dataSource]="users"
-          [showIndex]="false"
-          [enableSearch]="true"
-          [enableSort]="true"
-          (clickRow)="clickedRow($event)"
-        />
+      <div class="container pt-5">
+        <div class="d-flex border-bottom my-3">
+            <a routerLink="grid" class="display-5 text-decoration-none">Grid</a>
+        </div>
+        <router-outlet></router-outlet>
       </div>
     </div>
   `,
@@ -27,13 +20,4 @@ import { DataSourceElement } from "./components/grid/models/types";
     }
   `]
 })
-export class AppComponent {
-  public users$ = this.usersService.getUsers();
-
-  constructor(private usersService: UsersService) {}
-
-  public clickedRow(event: { el: DataSourceElement, index: number }): void {
-    console.log('Clicked', event.el);
-    console.log('Index: ', event.index);
-  }
-}
+export class AppComponent {}
