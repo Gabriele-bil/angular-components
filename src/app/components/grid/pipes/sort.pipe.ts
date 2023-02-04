@@ -7,7 +7,6 @@ import { DataSource, Sorting } from "../models/types";
 export class SortPipe implements PipeTransform {
 
   transform(value: DataSource, sorting: Sorting): DataSource {
-    console.log(sorting)
     if (!sorting || !sorting.order || !sorting.key) return value;
 
     return value.sort((a, b) => {

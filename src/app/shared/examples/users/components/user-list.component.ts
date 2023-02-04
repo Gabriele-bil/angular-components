@@ -1,5 +1,5 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
-import {User} from "../../../models/user.model";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { User } from "../../../models/user.model";
 
 @Component({
   selector: 'gb-user-list',

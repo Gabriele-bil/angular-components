@@ -7,8 +7,8 @@ import { GridModule } from './components/grid/grid.module';
 import { HttpClientModule } from "@angular/common/http";
 import { GridPageComponent } from './pages/grid-page.component';
 import { DynamicTabsPageComponent } from './pages/dynamic-tabs-page.component';
-import {TabsModule} from "./components/tabs/tabs.module";
-import {UsersModule} from "./shared/examples/users/users.module";
+import { TabsModule } from "./components/tabs/tabs.module";
+import { UsersModule } from "./shared/examples/users/users.module";
 
 @NgModule({
   declarations: [

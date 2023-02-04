@@ -1,7 +1,7 @@
-import {AfterViewInit, Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { User } from "../shared/models/user.model";
 import { TabsComponent } from "../components/tabs/components/tabs.component";
-import {UsersService} from "../shared/services/users.service";
+import { UsersService } from "../shared/services/users.service";
 
 @Component({
   template: `
