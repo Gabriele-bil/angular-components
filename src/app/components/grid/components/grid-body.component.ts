@@ -38,8 +38,11 @@ import { DataSource, DataSourceElement, SortDirection } from "../models/types";
         >
           <p class="col-1 text-center mb-0" *ngIf="showIndex">{{ i + 1 }}</p>
           <p class="col-3 col-md text-center mb-0" *ngFor="let key of keys">{{ el[key] }}</p>
-          <div class="col" *ngIf="itemTemplate">
-            <ng-container *ngTemplateOutlet="itemTemplate"></ng-container>
+          <div class="col test" *ngIf="itemTemplate">
+            <ng-container
+              [ngTemplateOutlet]="itemTemplate"
+              [ngTemplateOutletContext]="{ $implicit: el }"
+             />
           </div>
         </div>
       </div>

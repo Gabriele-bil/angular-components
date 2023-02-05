@@ -27,8 +27,11 @@ import { DataSource, DataSourceElement } from "./models/types";
           (clickRow)="clickRow.emit($event)"
         >
           <ng-container *ngIf="template">
-            <ng-template #itemTemplate let-item>
-              <ng-container *ngTemplateOutlet="template"></ng-container>
+            <ng-template #itemTemplate let-item let-el>
+              <ng-container
+                [ngTemplateOutlet]="template"
+                [ngTemplateOutletContext]="{ $implicit: el }"
+              />
             </ng-template>
           </ng-container>
         </gb-grid-body>

@@ -15,8 +15,8 @@ import { DataSourceElement } from "../components/grid/models/types";
       [enableSort]="true"
       (clickRow)="clickedRow($event)"
     >
-      <ng-template #itemTemplate let-item>
-        <p>Actions</p>
+      <ng-template #itemTemplate let-item let-el>
+        <button class="btn btn-secondary" (click)="$event.stopPropagation(); edit(el)">Edit</button>
       </ng-template>
     </gb-grid>
   `,
@@ -29,5 +29,9 @@ export class GridPageComponent {
   public clickedRow(event: { el: DataSourceElement, index: number }): void {
     console.log('Clicked', event.el);
     console.log('Index: ', event.index);
+  }
+
+  public edit(el: DataSourceElement): void {
+    console.log('edit', el)
   }
 }
