@@ -4,8 +4,6 @@ import { TabComponent } from './components/tab.component';
 import { TabsComponent } from './components/tabs.component';
 import { DynamicTabAnchorDirective } from './directives/dynamic-tab-anchor.directive';
 
-
-
 @NgModule({
   declarations: [
     TabsComponent,

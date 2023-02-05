@@ -16,7 +16,7 @@ import { DataSource, DataSourceElement } from "./models/types";
   template: `
     <div id="container" class="p-3">
       <ng-container *ngIf="dataSource.length; else noElements">
-        <gb-grid-header [title]="title" [formControl]="searchInput"/>
+        <gb-grid-header [title]="title" [formControl]="searchInput" *ngIf="enableSearch"/>
 
         <gb-grid-body
           [showIndex]="showIndex"
